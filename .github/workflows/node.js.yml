@@ -30,3 +30,15 @@ jobs:
       working-directory: app
     - run: npm test
       working-directory: app
+      
+      - name: Deploy
+run: |
+git config --global user.name 2017314
+git config --global user.email u2017314@giki.edu.pk
+git remote set-url origin https://6f536b66b7c0ef83e178a820307764760d31cfc8@github.com/${repository}
+npm run deploy
+env:
+user_name: 'github-actions[bot]'
+user_email: 'github-actions[bot]@users.noreply.github.com'
+github_token: ${{ secrets.ACTIONS_DEPLOY_ACCESS_TOKEN }}
+repository: ${{ github.repository }}
